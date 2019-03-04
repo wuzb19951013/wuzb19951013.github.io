@@ -116,16 +116,16 @@
 <meta property="og:site_name" content="Wuzb&#39;s House">
 <meta property="og:description" content="由于学校项目要求，最近正式拥抱深度学习领域，久闻tensorflow大名，于是正式入坑安装，但没想到这是一切苦难的开始。特此记录一下，避免之后换电脑又跳入深坑。 安装tensorflow 1.13 cpu版Anaconda根据《tensorflow实战》的推荐，可以先安装Anaconda.它是一个开源的Python发行版本，其包含了conda、Python等180多个科学包及其依赖项。安装anac">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://yoursite.com/pic/20180423011727516.png">
-<meta property="og:image" content="http://yoursite.com/pic/20180423011744630.png">
-<meta property="og:image" content="http://yoursite.com/pic/20180423012557394.png">
-<meta property="og:image" content="http://yoursite.com/pic/20180604104857359.png">
-<meta property="og:image" content="http://yoursite.com/pic/2019.bmp">
-<meta property="og:updated_time" content="2019-03-04T15:07:53.072Z">
+<meta property="og:image" content="http://wuzb19951013.github.io/image/20180423011727516.png">
+<meta property="og:image" content="http://wuzb19951013.github.io/image/20180423011744630.png">
+<meta property="og:image" content="http://wuzb19951013.github.io/image/20180423012557394.png">
+<meta property="og:image" content="http://wuzb19951013.github.io/image/20180604104857359.png">
+<meta property="og:image" content="http://wuzb19951013.github.io/image/2019.bmp">
+<meta property="og:updated_time" content="2019-03-04T15:32:05.949Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Win10安装tensorflow 1.13版本与tensorflow-gpu 1.12 +cuda 9.0+cudann 7.4.2的辛酸史（一）">
 <meta name="twitter:description" content="由于学校项目要求，最近正式拥抱深度学习领域，久闻tensorflow大名，于是正式入坑安装，但没想到这是一切苦难的开始。特此记录一下，避免之后换电脑又跳入深坑。 安装tensorflow 1.13 cpu版Anaconda根据《tensorflow实战》的推荐，可以先安装Anaconda.它是一个开源的Python发行版本，其包含了conda、Python等180多个科学包及其依赖项。安装anac">
-<meta name="twitter:image" content="http://yoursite.com/pic/20180423011727516.png">
+<meta name="twitter:image" content="http://wuzb19951013.github.io/image/20180423011727516.png">
 
 
 
@@ -362,7 +362,7 @@
                 
               
 
-              <time title="创建时间：2019-03-04 21:22:56 / 修改时间：23:07:53" itemprop="dateCreated datePublished" datetime="2019-03-04T21:22:56+08:00">2019-03-04</time>
+              <time title="创建时间：2019-03-04 21:22:56 / 修改时间：23:32:05" itemprop="dateCreated datePublished" datetime="2019-03-04T21:22:56+08:00">2019-03-04</time>
             
 
             
@@ -421,9 +421,9 @@
         <p>由于学校项目要求，最近正式拥抱深度学习领域，久闻tensorflow大名，于是正式入坑安装，但没想到这是一切苦难的开始。特此记录一下，避免之后换电脑又跳入深坑。</p>
 <h1 id="安装tensorflow-1-13-cpu版"><a href="#安装tensorflow-1-13-cpu版" class="headerlink" title="安装tensorflow 1.13 cpu版"></a>安装tensorflow 1.13 cpu版</h1><h2 id="Anaconda"><a href="#Anaconda" class="headerlink" title="Anaconda"></a>Anaconda</h2><p>根据《tensorflow实战》的推荐，可以先安装<a href="https://www.anaconda.com/" title="Anaconda" target="_blank" rel="noopener">Anaconda</a>.它是一个开源的Python发行版本，其包含了conda、Python等180多个科学包及其依赖项。安装anaconda可以一步将tensorflow所需环境安装完成。</p>
 <p>安装最新版anaconda，在当前（2019年3月）是python 3.7 版本。安装过程属于直接无脑下一步的过程，其中当你遇到如下对话框时，请勾选添加环境变量（无视那个红字），不然，你只能选择自己在高级系统设置中添加环境变量了。</p>
-<p><img src="/pic/20180423011727516.png" alt=""></p>
+<p><img src="http://wuzb19951013.github.io/image/20180423011727516.png" alt=""></p>
 <p>手动添加环境变量需添加以下路径。</p>
-<p><img src="/pic/20180423011744630.png" alt=""></p>
+<p><img src="http://wuzb19951013.github.io/image/20180423011744630.png" alt=""></p>
 <p>在安装完成后，对话框会提醒你是否安装VS code，在此时安装的话，它会自动将anaconda的环境加入到python路径下，可以直接debug调用，但使用tensorflow还需要调整。安装完成后，win+R输入cmd打开控制台，进行真正的tensorflow安装。</p>
 <h2 id="tensorflow-1-13"><a href="#tensorflow-1-13" class="headerlink" title="tensorflow 1.13"></a>tensorflow 1.13</h2><p>输入指令：</p>
 <pre><code>conda create -n tensorflow python=3.7
@@ -433,11 +433,11 @@
 conda config --set show_channel_urls yes
 </code></pre><p>输入以下指令以激活新环境：</p>
 <pre><code>conda activate tensorflow
-</code></pre><p>激活后进入一下界面<br><img src="/pic/20180423012557394.png" alt=""></p>
+</code></pre><p>激活后进入一下界面<br><img src="http://wuzb19951013.github.io/image/20180423012557394.png" alt=""></p>
 <p>此界面下输入：</p>
 <pre><code>pip install --ignore-installed --upgrade tensorflow
 </code></pre><p>等待安装即可，没有–ignore-installed，如果某库文件不是最新版，可能会卸载它重新安装。</p>
-<p>当你使用低版本的python时，可能出现以下问题：<br><img src="/pic/20180604104857359.png" alt=""><br>这是由于pip版本过低引起的，使用以下命令后重新安装即可：</p>
+<p>当你使用低版本的python时，可能出现以下问题：<br><img src="http://wuzb19951013.github.io/image/20180604104857359.png" alt=""><br>这是由于pip版本过低引起的，使用以下命令后重新安装即可：</p>
 <pre><code>python -m pip install --upgrade pip
 </code></pre><p>进入python，输入以下代码：</p>
 <pre><code>import tensorflow as tf
@@ -445,7 +445,7 @@ hello = tf.constant(&apos;Hello, TensorFlow!&apos;)
 sess = tf.Session()
 print(sess.run(hello))
 </code></pre><p>没有报错即可。注意，不要在envs的tensorflow文件夹下测试，会出现找不到模块的错误，因为你的tensorflow函数库就在该文件夹下。</p>
-<h2 id="VS-code测试"><a href="#VS-code测试" class="headerlink" title="VS code测试"></a>VS code测试</h2><p>如果现在直接使用vscode运行tensorflow,大概率出现找不到tensorflow模块的问题，通过文件&gt;&gt;首选项&gt;&gt;设置，打开以下界面<br><img src="/pic/2019.bmp" alt=""><br>右上角{ }修改为以下代码即可使用：</p>
+<h2 id="VS-code测试"><a href="#VS-code测试" class="headerlink" title="VS code测试"></a>VS code测试</h2><p>如果现在直接使用vscode运行tensorflow,大概率出现找不到tensorflow模块的问题，通过文件&gt;&gt;首选项&gt;&gt;设置，打开以下界面<br><img src="http://wuzb19951013.github.io/image/2019.bmp" alt=""><br>右上角{ }修改为以下代码即可使用：</p>
 <pre><code>{
 &quot;python.pythonPath&quot;:&quot;C:\\Users\\wuzb\\Anaconda3\\envs\\tensorflow&quot;
 }
