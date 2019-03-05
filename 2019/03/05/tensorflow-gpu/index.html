@@ -123,7 +123,7 @@
 <meta property="og:image" content="https://github.com/wuzb19951013/images/raw/master/tensorflow-gpu/cuDNNdir.png">
 <meta property="og:image" content="https://github.com/wuzb19951013/images/raw/master/tensorflow-gpu/CUDAdir.png">
 <meta property="og:image" content="https://github.com/wuzb19951013/images/raw/master/tensorflow-gpu/result.png">
-<meta property="og:updated_time" content="2019-03-05T16:06:32.986Z">
+<meta property="og:updated_time" content="2019-03-05T16:11:31.688Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Win10安装tensorflow 1.13版本与tensorflow-gpu 1.12 +cuda 9.0+cudann 7.4.2的辛酸史（二）">
 <meta name="twitter:description" content="实验室的电脑GPU性能太低，不符合tensorflow使用GPU运算的最低要求。好在我的笔记本GTX1050ti评分6.1，超过了最低的3.0分，可以尝试tensorflow-gpu，没想到，这个小心思是又一个噩梦的开始。 安装tensorflow-gpu 1.12 版安装CUDACUDA（Compute Unified Device Architecture,点击进入安装网站），是显卡厂商NVI">
@@ -381,7 +381,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-06 00:06:32" itemprop="dateModified" datetime="2019-03-06T00:06:32+08:00">2019-03-06</time>
+                <time title="修改时间：2019-03-06 00:11:31" itemprop="dateModified" datetime="2019-03-06T00:11:31+08:00">2019-03-06</time>
               
             
           </span>
@@ -526,7 +526,7 @@
 </table>
 <p>预计tensorflow_gpu-1.13.0支持CUDA 10.1 与 cuDNN 7.5 for 10.1, 但是由于之后的一些问题，心累,决定按照<a href="https://blog.csdn.net/weixin_39290638/article/details/80045236" title="gpu" target="_blank" rel="noopener">前人经验</a>进行CUDA 9.0+ tensorflow-gpu 1.12+ cuDNN 7.5.0 环境的安装。</p>
 <p>进入CUDA<a href="https://developer.nvidia.com/cuda-toolkit-archive" title="CUDA" target="_blank" rel="noopener">下载链接</a>后，选择CUDA 9.0,进入以下界面:</p>
-<div align="center"><br><br><img src="https://github.com/wuzb19951013/images/raw/master/tensorflow-gpu/CUDAlink.png" alt=""><br><br></div><br>选择windows等选项后，界面下方的所有下载项都需要下载（后四个是补丁，如果是10.1就没这么多补丁了）。下载完成后，安装顺序也按照上图所示排列顺序来。<br>安装本体cuda_9.0.176_win10_network.exe时，跟着索引走，如遇到以下图片时，请务必选择自定义安装。<br><div align="center"><br><br><img src="https://github.com/wuzb19951013/images/raw/master/tensorflow-gpu/installicon.png" alt=""><br><br></div><br>进入自定义安装之后，请务必按下图中的去掉勾选项，尤其是最后一项，他会更新你的驱动程序，是的，更新完之后，很可能你的独立显卡就无法使用了，重装驱动才能解决问题，这也是为什么即使它能更新驱动也要你安装驱动支持的CUDA版本的原因。<br><div align="center"><br><br><img src="https://github.com/wuzb19951013/images/raw/master/tensorflow-gpu/install.png" alt=""><br><br></div><br>安装完主体后，剩下的补丁只要顺序安装即可。<br><br><br>##  安装cuDNN<br><br>NVIDIA <a href="https://developer.nvidia.com/cuda-toolkit-archive" title="CUDA" target="_blank" rel="noopener">cuDNN</a>是用于深度神经网络的GPU加速库。它强调性能、易用性和低内存开销。下载CuDNN需要注册账号，注册过程比较简单，经过注册可以进入以下界面。<br><div align="center"><br><br><img src="https://github.com/wuzb19951013/images/raw/master/tensorflow-gpu/cuDNN.png" alt=""><br><br></div><br>因为cuDNN新的版本支持多个老版本的CUDA,选择最新版本对应CUDA版本对应平台的下载链接下载即可。下载得到一个zip文件。解压压缩包cudnn-9.0-windows10-x64-v7.5.zip，得到三个文件夹<br><div align="center"><br><br><img src="https://github.com/wuzb19951013/images/raw/master/tensorflow-gpu/cuDNNdir.png" alt=""><br><br></div>
+<div align="center"><br><br><img src="https://github.com/wuzb19951013/images/raw/master/tensorflow-gpu/CUDAlink.png" alt=""><br><br></div><br>选择windows等选项后，界面下方的所有下载项都需要下载（后四个是补丁，如果是10.1就没这么多补丁了）。下载完成后，安装顺序也按照上图所示排列顺序来。<br>安装本体cuda_9.0.176_win10_network.exe时，跟着索引走，如遇到以下图片时，请务必选择自定义安装。<br><div align="center"><br><br><img src="https://github.com/wuzb19951013/images/raw/master/tensorflow-gpu/installicon.png" alt=""><br><br></div><br><div align="center"><br><br><img src="https://github.com/wuzb19951013/images/raw/master/tensorflow-gpu/install.png" alt=""><br><br></div><br>进入自定义安装之后，请务必按上图中的去掉勾选项，尤其是最后一项，他会更新你的驱动程序，是的，更新完之后，很可能你的独立显卡就无法使用了，重装驱动才能解决问题，这也是为什么即使它能更新驱动也要你安装驱动支持的CUDA版本的原因。安装完主体后，剩下的补丁只要顺序安装即可。<br><br>## 安装cuDNN<br>NVIDIA <a href="https://developer.nvidia.com/cuda-toolkit-archive" title="CUDA" target="_blank" rel="noopener">cuDNN</a>是用于深度神经网络的GPU加速库。它强调性能、易用性和低内存开销。下载CuDNN需要注册账号，注册过程比较简单，经过注册可以进入以下界面。<br><div align="center"><br><br><img src="https://github.com/wuzb19951013/images/raw/master/tensorflow-gpu/cuDNN.png" alt=""><br><br></div><br>因为cuDNN新的版本支持多个老版本的CUDA,选择最新版本对应CUDA版本对应平台的下载链接下载即可。下载得到一个zip文件。解压压缩包cudnn-9.0-windows10-x64-v7.5.zip，得到三个文件夹<br><div align="center"><br><br><img src="https://github.com/wuzb19951013/images/raw/master/tensorflow-gpu/cuDNNdir.png" alt=""><br><br></div>
 
 <p>将这三个文件拷贝到CUDA9.0的安装路径根文件夹下，就完成了前期工作。</p>
 <div align="center"><br><br><img src="https://github.com/wuzb19951013/images/raw/master/tensorflow-gpu/CUDAdir.png" alt=""><br><br></div>
