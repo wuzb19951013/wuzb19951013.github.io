@@ -108,23 +108,33 @@
 
 
 
-  <meta name="description" content="Don&apos;t follow your passion, but always bring it with you.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Wuzb&#39;s House">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="实验室的电脑GPU性能太低，不符合tensorflow使用GPU运算的最低要求。好在我的笔记本GTX1050ti评分6.1，超过了最低的3.0分，可以尝试tensorflow-gpu，没想到，这个小心思是又一个噩梦的开始。 安装tensorflow-gpu 1.12 版安装CUDACUDA（Compute Unified Device Architecture,点击进入安装网站），是显卡厂商NVI">
+<meta name="keywords" content="tensorflow,cuda,gpu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Win10安装tensorflow 1.13版本与tensorflow-gpu 1.12 +cuda 9.0+cudann 7.4.2的辛酸史（二）">
+<meta property="og:url" content="http://yoursite.com/2019/03/05/tensorflow-gpu/index.html">
 <meta property="og:site_name" content="Wuzb&#39;s House">
-<meta property="og:description" content="Don&apos;t follow your passion, but always bring it with you.">
+<meta property="og:description" content="实验室的电脑GPU性能太低，不符合tensorflow使用GPU运算的最低要求。好在我的笔记本GTX1050ti评分6.1，超过了最低的3.0分，可以尝试tensorflow-gpu，没想到，这个小心思是又一个噩梦的开始。 安装tensorflow-gpu 1.12 版安装CUDACUDA（Compute Unified Device Architecture,点击进入安装网站），是显卡厂商NVI">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://github.com/wuzb19951013/images/raw/master/tensorflow-gpu/CUDAlink.png">
+<meta property="og:image" content="https://github.com/wuzb19951013/images/raw/master/tensorflow-gpu/installicon.png">
+<meta property="og:image" content="https://github.com/wuzb19951013/images/raw/master/tensorflow-gpu/install.png">
+<meta property="og:image" content="https://github.com/wuzb19951013/images/raw/master/tensorflow-gpu/cuDNN.png">
+<meta property="og:image" content="https://github.com/wuzb19951013/images/raw/master/tensorflow-gpu/CuDNNdir.png">
+<meta property="og:image" content="https://github.com/wuzb19951013/images/raw/master/tensorflow-gpu/CUDAdir.png">
+<meta property="og:image" content="https://github.com/wuzb19951013/images/raw/master/tensorflow-gpu/result.png">
+<meta property="og:updated_time" content="2019-03-05T15:28:20.051Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Wuzb&#39;s House">
-<meta name="twitter:description" content="Don&apos;t follow your passion, but always bring it with you.">
+<meta name="twitter:title" content="Win10安装tensorflow 1.13版本与tensorflow-gpu 1.12 +cuda 9.0+cudann 7.4.2的辛酸史（二）">
+<meta name="twitter:description" content="实验室的电脑GPU性能太低，不符合tensorflow使用GPU运算的最低要求。好在我的笔记本GTX1050ti评分6.1，超过了最低的3.0分，可以尝试tensorflow-gpu，没想到，这个小心思是又一个噩梦的开始。 安装tensorflow-gpu 1.12 版安装CUDACUDA（Compute Unified Device Architecture,点击进入安装网站），是显卡厂商NVI">
+<meta name="twitter:image" content="https://github.com/wuzb19951013/images/raw/master/tensorflow-gpu/CUDAlink.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/">
+  <link rel="canonical" href="http://yoursite.com/2019/03/05/tensorflow-gpu/">
 
 
 
@@ -134,7 +144,7 @@
   };
 </script>
 
-  <title>Wuzb's House</title>
+  <title>Win10安装tensorflow 1.13版本与tensorflow-gpu 1.12 +cuda 9.0+cudann 7.4.2的辛酸史（二） | Wuzb's House</title>
   
 
 
@@ -183,8 +193,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -225,7 +234,7 @@
         
         
           
-          <li class="menu-item menu-item-home menu-item-active">
+          <li class="menu-item menu-item-home">
 
     
     
@@ -296,9 +305,9 @@
           
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -330,10 +339,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/05/tensorflow-gpu/" class="post-title-link" itemprop="http://yoursite.com/index.html">Win10安装tensorflow 1.13版本与tensorflow-gpu 1.12 +cuda 9.0+cudann 7.4.2的辛酸史（二）</a>
+          <h1 class="post-title" itemprop="name headline">Win10安装tensorflow 1.13版本与tensorflow-gpu 1.12 +cuda 9.0+cudann 7.4.2的辛酸史（二）
               
             
           </h1>
@@ -414,21 +420,101 @@
       
 
       
-        
-          
-          实验室的电脑GPU性能太低，不符合tensorflow使用GPU运算的最低要求。好在我的笔记本GTX1050ti评分6.1，超过了最低的3.0分，可以尝试tensorflow-gpu，没想到，这个小心思是又一个噩梦的开始。
-安装tensorflow-gpu 1.12 版安装CUDACUDA（Compute Unified Device Architecture,点击进入安装网站），是显卡厂商NVI
-          ...
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/05/tensorflow-gpu/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
+        <p>实验室的电脑GPU性能太低，不符合tensorflow使用GPU运算的<a href="https://developer.nvidia.com/cuda-gpus" target="_blank" rel="noopener">最低要求</a>。好在我的笔记本GTX1050ti评分6.1，超过了最低的3.0分，可以尝试tensorflow-gpu，没想到，这个小心思是又一个噩梦的开始。</p>
+<h1 id="安装tensorflow-gpu-1-12-版"><a href="#安装tensorflow-gpu-1-12-版" class="headerlink" title="安装tensorflow-gpu 1.12 版"></a>安装tensorflow-gpu 1.12 版</h1><h2 id="安装CUDA"><a href="#安装CUDA" class="headerlink" title="安装CUDA"></a>安装CUDA</h2><p><a href="https://developer.nvidia.com/cuda-toolkit-archive" title="CUDA" target="_blank" rel="noopener">CUDA</a>（Compute Unified Device Architecture,点击进入安装网站），是显卡厂商NVIDIA推出的运算平台。 CUDA™是一种由NVIDIA推出的通用并行计算架构，该架构使GPU能够解决复杂的计算问题。安装GPU版tensorflow,必须有这个环境。尽量选择你显卡驱动版本支持，同时tensorflow版本也需要与它支持的CUDA对应，不然会很麻烦…我的显卡驱动原生为398.82，支持CUDA 9.2以下的版本。同时，tensorflow-gpu表对应如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Version</th>
+<th style="text-align:center">Python version</th>
+<th style="text-align:center">cuDNN</th>
+<th style="text-align:center">CUDA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">tensorflow_gpu-1.12.0</td>
+<td style="text-align:center">2.7, 3.3-3.6</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center">9</td>
+</tr>
+<tr>
+<td style="text-align:center">tensorflow_gpu-1.11.0</td>
+<td style="text-align:center">2.7, 3.3-3.6</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center">9</td>
+</tr>
+<tr>
+<td style="text-align:center">tensorflow_gpu-1.10.0</td>
+<td style="text-align:center">2.7, 3.3-3.6</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center">9</td>
+</tr>
+<tr>
+<td style="text-align:center">tensorflow_gpu-1.9.0</td>
+<td style="text-align:center">2.7, 3.3-3.6</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center">9</td>
+</tr>
+<tr>
+<td style="text-align:center">tensorflow_gpu-1.8.0</td>
+<td style="text-align:center">2.7, 3.3-3.6</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center">9</td>
+</tr>
+<tr>
+<td style="text-align:center">tensorflow_gpu-1.7.0</td>
+<td style="text-align:center">2.7, 3.3-3.6</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center">9</td>
+</tr>
+<tr>
+<td style="text-align:center">tensorflow_gpu-1.6.0</td>
+<td style="text-align:center">2.7, 3.3-3.6</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center">9</td>
+</tr>
+<tr>
+<td style="text-align:center">tensorflow_gpu-1.5.0</td>
+<td style="text-align:center">2.7, 3.3-3.6</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center">9</td>
+</tr>
+<tr>
+<td style="text-align:center">tensorflow_gpu-1.4.0</td>
+<td style="text-align:center">2.7, 3.3-3.6</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">8</td>
+</tr>
+<tr>
+<td style="text-align:center">tensorflow_gpu-1.3.0</td>
+<td style="text-align:center">2.7, 3.3-3.6</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">8</td>
+</tr>
+<tr>
+<td style="text-align:center">tensorflow_gpu-1.2.0</td>
+<td style="text-align:center">2.7, 3.3-3.6</td>
+<td style="text-align:center">5.1</td>
+<td style="text-align:center">8</td>
+</tr>
+<tr>
+<td style="text-align:center">tensorflow_gpu-1.1.0</td>
+<td style="text-align:center">2.7, 3.3-3.6</td>
+<td style="text-align:center">5.1</td>
+<td style="text-align:center">8</td>
+</tr>
+<tr>
+<td style="text-align:center">tensorflow_gpu-1.0.0</td>
+<td style="text-align:center">2.7, 3.3-3.6</td>
+<td style="text-align:center">5.1</td>
+<td style="text-align:center">8</td>
+</tr>
+</tbody>
+</table>
+<p>预计tensorflow_gpu-1.13.0支持CUDA 10.1 与 cuDNN 7.5 for 10.1, 但是由于之后的一些问题，心累,决定按照<a href="https://blog.csdn.net/weixin_39290638/article/details/80045236" title="gpu" target="_blank" rel="noopener">前人经验</a>进行CUDA 9.0+ tensorflow-gpu 1.12+ cuDNN 7.5.0 环境的安装。</p>
+<p>进入CUDA<a href="https://developer.nvidia.com/cuda-toolkit-archive" title="CUDA" target="_blank" rel="noopener">下载链接</a>后，选择CUDA 9.0,进入以下界面:</p>
+<div align="center"><br><br><img src="https://github.com/wuzb19951013/images/raw/master/tensorflow-gpu/CUDAlink.png" alt=""><br><br></div><br>选择windows等选项后，界面下方的所有下载项都需要下载（后四个是补丁，如果是10.1就没这么多补丁了）。下载完成后，安装顺序也按照上图所示排列顺序来。<br>安装本体cuda_9.0.176_win10_network.exe时，跟着索引走，如遇到以下图片时，请务必选择自定义安装。<br><div align="center"><br><br><img src="https://github.com/wuzb19951013/images/raw/master/tensorflow-gpu/installicon.png" alt=""><br><br></div><br>进入自定义安装之后，请务必按下图中的去掉勾选项，尤其是最后一项，他会更新你的驱动程序，是的，更新完之后，很可能你的独立显卡就无法使用了，重装驱动才能解决问题，这也是为什么即使它能更新驱动也要你安装驱动支持的CUDA版本的原因。<br><div align="center"><br><br><img src="https://github.com/wuzb19951013/images/raw/master/tensorflow-gpu/install.png" alt=""><br><br></div><br>安装完主体后，剩下的补丁只要顺序安装即可。<br><br>## 安装cuDNN<br>NVIDIA <a href="https://developer.nvidia.com/cuda-toolkit-archive" title="CUDA" target="_blank" rel="noopener">cuDNN</a>是用于深度神经网络的GPU加速库。它强调性能、易用性和低内存开销。下载CuDNN需要注册账号，注册过程比较简单，经过注册可以进入以下界面。<br><div align="center"><br><br><img src="https://github.com/wuzb19951013/images/raw/master/tensorflow-gpu/cuDNN.png" alt=""><br><br></div><br>因为cuDNN新的版本支持多个老版本的CUDA,选择最新版本对应CUDA版本对应平台的下载链接下载即可。下载得到一个zip文件。解压压缩包cudnn-9.0-windows10-x64-v7.5.zip，得到三个文件夹<br><div align="center"><br><br><img src="https://github.com/wuzb19951013/images/raw/master/tensorflow-gpu/CuDNNdir.png" alt=""><br><br></div><br>将这三个文件拷贝到CUDA9.0的安装路径根文件夹下，就完成了前期工作。<br><div align="center"><br><br><img src="https://github.com/wuzb19951013/images/raw/master/tensorflow-gpu/CUDAdir.png" alt=""><br><br></div><br>## 安装 tensorflow 1.12 gpu版<br>根据 <a href="http://wuzb19951013.github.io/2019/03/04/tensorflow/" target="_blank" rel="noopener">Win10安装tensorflow 1.13版本与tensorflow-gpu 1.12 +cuda 9.0+cudann 7.4.2的辛酸史（一）</a>的方法安装Anaconda并创建新环境。<br><br>    conda create -n tensorflow-gpu python=3.6<br>由于tensorflow-gpu 1.12只支持到python 3.6 所以需要制定python 3.6.同时，默认安装tensorflow-gpu 1.13，虽然tensorflow-gpu 1.13也支持python 3.6 但为了防止万一，安装tensorflow-gpu 1.12更稳妥。安装之前，因为环境是python 3.6，首先，先升级pip<br><br>    python -m pip install –upgrade pip<br>升级完成后，安装tensorflow-gpu<br><br>    pip install –ignore-installed –upgrade tensorflow-gpu==1.12<br>利用（一）中的方法进入新环境后，输入测试代码<br><br>    import tensorflow as tf<br>    hello = tf.constant(‘Hello, TensorFlow!’)<br>    sess = tf.Session()<br>    print(sess.run(hello))<br>耐心等待，正确输出即表示成功。<br><div align="center"><br><br><img src="https://github.com/wuzb19951013/images/raw/master/tensorflow-gpu/result.png" alt=""><br><br></div>
       
     </div>
 
@@ -449,377 +535,40 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/04/tensorflow/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wuzb">
-      <meta itemprop="description" content="Don't follow your passion, but always bring it with you.">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wuzb's House">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/04/tensorflow/" class="post-title-link" itemprop="http://yoursite.com/index.html">Win10安装tensorflow 1.13版本与tensorflow-gpu 1.12 +cuda 9.0+cudann 7.4.2的辛酸史（一）</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-04 21:22:56" itemprop="dateCreated datePublished" datetime="2019-03-04T21:22:56+08:00">2019-03-04</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-05 23:14:56" itemprop="dateModified" datetime="2019-03-05T23:14:56+08:00">2019-03-05</time>
-              
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/开发环境/" itemprop="url" rel="index"><span itemprop="name">开发环境</span></a></span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/tensorflow/" rel="tag"># tensorflow</a>
           
-
+            <a href="/tags/cuda/" rel="tag"># cuda</a>
           
-            
+            <a href="/tags/gpu/" rel="tag"># gpu</a>
           
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
+      
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
       
-        
-          
-          由于学校项目要求，最近正式拥抱深度学习领域，久闻tensorflow大名，于是正式入坑安装，但没想到这是一切苦难的开始。特此记录一下，避免之后换电脑又跳入深坑。
-安装tensorflow 1.13 cpu版Anaconda根据《tensorflow实战》的推荐，可以先安装Anaconda.它是一个开源的Python发行版本，其包含了conda、Python等180多个科学包及其依赖项。安装anac
-          ...
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/04/tensorflow/#more" rel="contents">
-                阅读全文 &raquo;
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/04/tensorflow/" rel="next" title="Win10安装tensorflow 1.13版本与tensorflow-gpu 1.12 +cuda 9.0+cudann 7.4.2的辛酸史（一）">
+                <i class="fa fa-chevron-left"></i> Win10安装tensorflow 1.13版本与tensorflow-gpu 1.12 +cuda 9.0+cudann 7.4.2的辛酸史（一）
               </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-       
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/25/my grandfather/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wuzb">
-      <meta itemprop="description" content="Don't follow your passion, but always bring it with you.">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wuzb's House">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/11/25/my grandfather/" class="post-title-link" itemprop="http://yoursite.com/index.html">我的外公</a>
-              
             
-          </h1>
-        
+          </div>
 
-        <div class="post-meta">
-          <span class="post-time">
+          <span class="post-nav-divider"></span>
 
+          <div class="post-nav-prev post-nav-item">
             
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-11-25 15:36:53" itemprop="dateCreated datePublished" datetime="2018-11-25T15:36:53+08:00">2018-11-25</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-04 21:30:07" itemprop="dateModified" datetime="2019-03-04T21:30:07+08:00">2019-03-04</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/随笔/" itemprop="url" rel="index"><span itemprop="name">随笔</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-          
-我的外公去世了，突发心脏病。抢救一星期后，时间定格在4月14日晚，农历三月初八。
-我妈打给我电话是在早上6：41分，然而并没有多么的悲伤，似乎是一个稀松平常的事，我挂了电话，继续睡觉。我都不知道我为什么会如此的冷血。之后20分钟，我表弟打来电话，问我回不回家，带着哭腔，我这才意识到，是我外公走了。然而我依然没有意识到这意味着什么，也不带过多的悲伤，而是感慨我妈惊人的意志力，也许悲伤逆流成河，泪也
-          ...
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/11/25/my grandfather/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-       
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -829,196 +578,15 @@
   </article>
 
 
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/23/test-my-site/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wuzb">
-      <meta itemprop="description" content="Don't follow your passion, but always bring it with you.">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wuzb's House">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/11/23/test-my-site/" class="post-title-link" itemprop="http://yoursite.com/index.html">重见天日的博客</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-11-23 22:39:11" itemprop="dateCreated datePublished" datetime="2018-11-23T22:39:11+08:00">2018-11-23</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-04 21:39:28" itemprop="dateModified" datetime="2019-03-04T21:39:28+08:00">2019-03-04</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          时隔2年，我终于又想起自己还有个博客，虽然博客之前的版本已经找不到了，好歹我还知道怎么寻找帮助。
-感谢知乎中各个技术贴：特别是————GitHub+Hexo 搭建个人网站详细教程的帮助，虽然还有一些小问题
-一开始使用的amber主题在载入loading时有时会莫名卡死，其中的词云还有现成的很多包含评论、搜索等功能其实我还蛮喜欢的。不得已改为next，好多插件需要自己学习使用了，不过也许我搞定amb
-          ...
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/11/23/test-my-site/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-       
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -1039,8 +607,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -1172,6 +749,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装tensorflow-gpu-1-12-版"><span class="nav-number">1.</span> <span class="nav-text">安装tensorflow-gpu 1.12 版</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装CUDA"><span class="nav-number">1.1.</span> <span class="nav-text">安装CUDA</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -1299,6 +892,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.5.0"></script>
+
+
 
   
 
