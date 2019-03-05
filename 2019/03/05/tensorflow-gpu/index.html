@@ -123,7 +123,7 @@
 <meta property="og:image" content="https://github.com/wuzb19951013/images/raw/master/tensorflow-gpu/CuDNNdir.png">
 <meta property="og:image" content="https://github.com/wuzb19951013/images/raw/master/tensorflow-gpu/CUDAdir.png">
 <meta property="og:image" content="https://github.com/wuzb19951013/images/raw/master/tensorflow-gpu/result.png">
-<meta property="og:updated_time" content="2019-03-05T15:28:20.051Z">
+<meta property="og:updated_time" content="2019-03-05T15:55:25.663Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Win10安装tensorflow 1.13版本与tensorflow-gpu 1.12 +cuda 9.0+cudann 7.4.2的辛酸史（二）">
 <meta name="twitter:description" content="实验室的电脑GPU性能太低，不符合tensorflow使用GPU运算的最低要求。好在我的笔记本GTX1050ti评分6.1，超过了最低的3.0分，可以尝试tensorflow-gpu，没想到，这个小心思是又一个噩梦的开始。 安装tensorflow-gpu 1.12 版安装CUDACUDA（Compute Unified Device Architecture,点击进入安装网站），是显卡厂商NVI">
@@ -364,7 +364,7 @@
                 
               
 
-              <time title="创建时间：2019-03-05 21:37:47 / 修改时间：23:28:20" itemprop="dateCreated datePublished" datetime="2019-03-05T21:37:47+08:00">2019-03-05</time>
+              <time title="创建时间：2019-03-05 21:37:47 / 修改时间：23:55:25" itemprop="dateCreated datePublished" datetime="2019-03-05T21:37:47+08:00">2019-03-05</time>
             
 
             
@@ -514,7 +514,21 @@
 </table>
 <p>预计tensorflow_gpu-1.13.0支持CUDA 10.1 与 cuDNN 7.5 for 10.1, 但是由于之后的一些问题，心累,决定按照<a href="https://blog.csdn.net/weixin_39290638/article/details/80045236" title="gpu" target="_blank" rel="noopener">前人经验</a>进行CUDA 9.0+ tensorflow-gpu 1.12+ cuDNN 7.5.0 环境的安装。</p>
 <p>进入CUDA<a href="https://developer.nvidia.com/cuda-toolkit-archive" title="CUDA" target="_blank" rel="noopener">下载链接</a>后，选择CUDA 9.0,进入以下界面:</p>
-<div align="center"><br><br><img src="https://github.com/wuzb19951013/images/raw/master/tensorflow-gpu/CUDAlink.png" alt=""><br><br></div><br>选择windows等选项后，界面下方的所有下载项都需要下载（后四个是补丁，如果是10.1就没这么多补丁了）。下载完成后，安装顺序也按照上图所示排列顺序来。<br>安装本体cuda_9.0.176_win10_network.exe时，跟着索引走，如遇到以下图片时，请务必选择自定义安装。<br><div align="center"><br><br><img src="https://github.com/wuzb19951013/images/raw/master/tensorflow-gpu/installicon.png" alt=""><br><br></div><br>进入自定义安装之后，请务必按下图中的去掉勾选项，尤其是最后一项，他会更新你的驱动程序，是的，更新完之后，很可能你的独立显卡就无法使用了，重装驱动才能解决问题，这也是为什么即使它能更新驱动也要你安装驱动支持的CUDA版本的原因。<br><div align="center"><br><br><img src="https://github.com/wuzb19951013/images/raw/master/tensorflow-gpu/install.png" alt=""><br><br></div><br>安装完主体后，剩下的补丁只要顺序安装即可。<br><br>## 安装cuDNN<br>NVIDIA <a href="https://developer.nvidia.com/cuda-toolkit-archive" title="CUDA" target="_blank" rel="noopener">cuDNN</a>是用于深度神经网络的GPU加速库。它强调性能、易用性和低内存开销。下载CuDNN需要注册账号，注册过程比较简单，经过注册可以进入以下界面。<br><div align="center"><br><br><img src="https://github.com/wuzb19951013/images/raw/master/tensorflow-gpu/cuDNN.png" alt=""><br><br></div><br>因为cuDNN新的版本支持多个老版本的CUDA,选择最新版本对应CUDA版本对应平台的下载链接下载即可。下载得到一个zip文件。解压压缩包cudnn-9.0-windows10-x64-v7.5.zip，得到三个文件夹<br><div align="center"><br><br><img src="https://github.com/wuzb19951013/images/raw/master/tensorflow-gpu/CuDNNdir.png" alt=""><br><br></div><br>将这三个文件拷贝到CUDA9.0的安装路径根文件夹下，就完成了前期工作。<br><div align="center"><br><br><img src="https://github.com/wuzb19951013/images/raw/master/tensorflow-gpu/CUDAdir.png" alt=""><br><br></div><br>## 安装 tensorflow 1.12 gpu版<br>根据 <a href="http://wuzb19951013.github.io/2019/03/04/tensorflow/" target="_blank" rel="noopener">Win10安装tensorflow 1.13版本与tensorflow-gpu 1.12 +cuda 9.0+cudann 7.4.2的辛酸史（一）</a>的方法安装Anaconda并创建新环境。<br><br>    conda create -n tensorflow-gpu python=3.6<br>由于tensorflow-gpu 1.12只支持到python 3.6 所以需要制定python 3.6.同时，默认安装tensorflow-gpu 1.13，虽然tensorflow-gpu 1.13也支持python 3.6 但为了防止万一，安装tensorflow-gpu 1.12更稳妥。安装之前，因为环境是python 3.6，首先，先升级pip<br><br>    python -m pip install –upgrade pip<br>升级完成后，安装tensorflow-gpu<br><br>    pip install –ignore-installed –upgrade tensorflow-gpu==1.12<br>利用（一）中的方法进入新环境后，输入测试代码<br><br>    import tensorflow as tf<br>    hello = tf.constant(‘Hello, TensorFlow!’)<br>    sess = tf.Session()<br>    print(sess.run(hello))<br>耐心等待，正确输出即表示成功。<br><div align="center"><br><br><img src="https://github.com/wuzb19951013/images/raw/master/tensorflow-gpu/result.png" alt=""><br><br></div>
+<div align="center"><br><br><img src="https://github.com/wuzb19951013/images/raw/master/tensorflow-gpu/CUDAlink.png" alt=""><br><br></div><br>选择windows等选项后，界面下方的所有下载项都需要下载（后四个是补丁，如果是10.1就没这么多补丁了）。下载完成后，安装顺序也按照上图所示排列顺序来。<br>安装本体cuda_9.0.176_win10_network.exe时，跟着索引走，如遇到以下图片时，请务必选择自定义安装。<br><div align="center"><br><br><img src="https://github.com/wuzb19951013/images/raw/master/tensorflow-gpu/installicon.png" alt=""><br><br></div><br>进入自定义安装之后，请务必按下图中的去掉勾选项，尤其是最后一项，他会更新你的驱动程序，是的，更新完之后，很可能你的独立显卡就无法使用了，重装驱动才能解决问题，这也是为什么即使它能更新驱动也要你安装驱动支持的CUDA版本的原因。<br><div align="center"><br><br><img src="https://github.com/wuzb19951013/images/raw/master/tensorflow-gpu/install.png" alt=""><br><br></div><br>安装完主体后，剩下的补丁只要顺序安装即可。<br><br>## 安装cuDNN<br>NVIDIA <a href="https://developer.nvidia.com/cuda-toolkit-archive" title="CUDA" target="_blank" rel="noopener">cuDNN</a>是用于深度神经网络的GPU加速库。它强调性能、易用性和低内存开销。下载CuDNN需要注册账号，注册过程比较简单，经过注册可以进入以下界面。<br><div align="center"><br><br><img src="https://github.com/wuzb19951013/images/raw/master/tensorflow-gpu/cuDNN.png" alt=""><br><br></div><br>因为cuDNN新的版本支持多个老版本的CUDA,选择最新版本对应CUDA版本对应平台的下载链接下载即可。下载得到一个zip文件。解压压缩包cudnn-9.0-windows10-x64-v7.5.zip，得到三个文件夹<br><div align="center"><br><br><img src="https://github.com/wuzb19951013/images/raw/master/tensorflow-gpu/CuDNNdir.png" alt=""><br><br></div><br>将这三个文件拷贝到CUDA9.0的安装路径根文件夹下，就完成了前期工作。<br><div align="center"><br><br><img src="https://github.com/wuzb19951013/images/raw/master/tensorflow-gpu/CUDAdir.png" alt=""><br><br></div>
+
+<h2 id="安装-tensorflow-1-12-gpu版"><a href="#安装-tensorflow-1-12-gpu版" class="headerlink" title="安装 tensorflow 1.12 gpu版"></a>安装 tensorflow 1.12 gpu版</h2><p>根据 <a href="http://wuzb19951013.github.io/2019/03/04/tensorflow/" target="_blank" rel="noopener">Win10安装tensorflow 1.13版本与tensorflow-gpu 1.12 +cuda 9.0+cudann 7.4.2的辛酸史（一）</a>的方法安装Anaconda并创建新环境。</p>
+<pre><code>conda create -n tensorflow-gpu python=3.6
+</code></pre><p>由于tensorflow-gpu 1.12只支持到python 3.6 所以需要制定python 3.6.同时，默认安装tensorflow-gpu 1.13，虽然tensorflow-gpu 1.13也支持python 3.6 但为了防止万一，安装tensorflow-gpu 1.12更稳妥。安装之前，因为环境是python 3.6，首先，先升级pip</p>
+<pre><code>python -m pip install --upgrade pip
+</code></pre><p>升级完成后，安装tensorflow-gpu</p>
+<pre><code>pip install --ignore-installed --upgrade tensorflow-gpu==1.12
+</code></pre><p>利用（一）中的方法进入新环境后，输入测试代码</p>
+<pre><code>import tensorflow as tf
+hello = tf.constant(&apos;Hello, TensorFlow!&apos;)
+sess = tf.Session()
+print(sess.run(hello))
+</code></pre><p>耐心等待，正确输出即表示成功。</p>
+<div align="center"><br><br><img src="https://github.com/wuzb19951013/images/raw/master/tensorflow-gpu/result.png" alt=""><br><br></div>
       
     </div>
 
@@ -758,7 +772,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装tensorflow-gpu-1-12-版"><span class="nav-number">1.</span> <span class="nav-text">安装tensorflow-gpu 1.12 版</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装CUDA"><span class="nav-number">1.1.</span> <span class="nav-text">安装CUDA</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装tensorflow-gpu-1-12-版"><span class="nav-number">1.</span> <span class="nav-text">安装tensorflow-gpu 1.12 版</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装CUDA"><span class="nav-number">1.1.</span> <span class="nav-text">安装CUDA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-tensorflow-1-12-gpu版"><span class="nav-number">1.2.</span> <span class="nav-text">安装 tensorflow 1.12 gpu版</span></a></li></ol></li></ol></div>
             
 
           </div>
