@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.5.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.5.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.5.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.5.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="实验室的电脑GPU性能太低，不符合tensorflow使用GPU运算的最低要求。好在我的笔记本GTX1050ti评分6.1，超过了最低的3.0分，可以尝试tensorflow-gpu，没想到，这个小心思是又一个噩梦的开始。 安装tensorflow-gpu 1.12 版安装CUDACUDA（Compute Unified Device Architecture,点击进入安装网站），是显卡厂商NVI">
+<meta name="keywords" content="tensorflow,cuda,gpu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Win10安装tensorflow 1.13版本与tensorflow-gpu 1.12 +cuda 9.0+cudann 7.4.2的辛酸史（二）">
+<meta property="og:url" content="http://yoursite.com/2023/07/17/tensorflow-gpu/index.html">
+<meta property="og:site_name" content="Wuzb&#39;s House">
+<meta property="og:description" content="实验室的电脑GPU性能太低，不符合tensorflow使用GPU运算的最低要求。好在我的笔记本GTX1050ti评分6.1，超过了最低的3.0分，可以尝试tensorflow-gpu，没想到，这个小心思是又一个噩梦的开始。 安装tensorflow-gpu 1.12 版安装CUDACUDA（Compute Unified Device Architecture,点击进入安装网站），是显卡厂商NVI">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://github.com/wuzb19951013/images/raw/master/tensorflow-gpu/CUDAlink.png">
+<meta property="og:image" content="https://github.com/wuzb19951013/images/raw/master/tensorflow-gpu/installicon.png">
+<meta property="og:image" content="https://github.com/wuzb19951013/images/raw/master/tensorflow-gpu/install.png">
+<meta property="og:image" content="https://github.com/wuzb19951013/images/raw/master/tensorflow-gpu/cuDNN.png">
+<meta property="og:image" content="https://github.com/wuzb19951013/images/raw/master/tensorflow-gpu/cuDNNdir.png">
+<meta property="og:image" content="https://github.com/wuzb19951013/images/raw/master/tensorflow-gpu/CUDAdir.png">
+<meta property="og:image" content="https://github.com/wuzb19951013/images/raw/master/tensorflow-gpu/result.png">
+<meta property="og:updated_time" content="2019-03-05T16:14:17.823Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Win10安装tensorflow 1.13版本与tensorflow-gpu 1.12 +cuda 9.0+cudann 7.4.2的辛酸史（二）">
+<meta name="twitter:description" content="实验室的电脑GPU性能太低，不符合tensorflow使用GPU运算的最低要求。好在我的笔记本GTX1050ti评分6.1，超过了最低的3.0分，可以尝试tensorflow-gpu，没想到，这个小心思是又一个噩梦的开始。 安装tensorflow-gpu 1.12 版安装CUDACUDA（Compute Unified Device Architecture,点击进入安装网站），是显卡厂商NVI">
+<meta name="twitter:image" content="https://github.com/wuzb19951013/images/raw/master/tensorflow-gpu/CUDAlink.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2023/07/17/tensorflow-gpu/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Win10安装tensorflow 1.13版本与tensorflow-gpu 1.12 +cuda 9.0+cudann 7.4.2的辛酸史（二） | Wuzb's House</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Wuzb's House</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Hello,World.</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+  
+  
+
+  
+
+    <a href="https://github.com/wuzb19951013" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" style="fill: #222; color: #fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2023/07/17/tensorflow-gpu/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wuzb">
+      <meta itemprop="description" content="Don't follow your passion, but always bring it with you.">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wuzb's House">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Win10安装tensorflow 1.13版本与tensorflow-gpu 1.12 +cuda 9.0+cudann 7.4.2的辛酸史（二）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2023-07-17 00:52:18" itemprop="dateCreated datePublished" datetime="2023-07-17T00:52:18+08:00">2023-07-17</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-06 00:14:17" itemprop="dateModified" datetime="2019-03-06T00:14:17+08:00">2019-03-06</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/开发环境/" itemprop="url" rel="index"><span itemprop="name">开发环境</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>实验室的电脑GPU性能太低，不符合tensorflow使用GPU运算的<a href="https://developer.nvidia.com/cuda-gpus" target="_blank" rel="noopener">最低要求</a>。好在我的笔记本GTX1050ti评分6.1，超过了最低的3.0分，可以尝试tensorflow-gpu，没想到，这个小心思是又一个噩梦的开始。</p>
+<h1 id="安装tensorflow-gpu-1-12-版"><a href="#安装tensorflow-gpu-1-12-版" class="headerlink" title="安装tensorflow-gpu 1.12 版"></a>安装tensorflow-gpu 1.12 版</h1><h2 id="安装CUDA"><a href="#安装CUDA" class="headerlink" title="安装CUDA"></a>安装CUDA</h2><p><a href="https://developer.nvidia.com/cuda-toolkit-archive" title="CUDA" target="_blank" rel="noopener">CUDA</a>（Compute Unified Device Architecture,点击进入安装网站），是显卡厂商NVIDIA推出的运算平台。 CUDA™是一种由NVIDIA推出的通用并行计算架构，该架构使GPU能够解决复杂的计算问题。安装GPU版tensorflow,必须有这个环境。尽量选择你显卡驱动版本支持，同时tensorflow版本也需要与它支持的CUDA对应，不然会很麻烦…我的显卡驱动原生为398.82，支持CUDA 9.2以下的版本。同时，tensorflow-gpu表对应如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Version</th>
+<th style="text-align:center">Python version</th>
+<th style="text-align:center">cuDNN</th>
+<th style="text-align:center">CUDA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">tensorflow_gpu-1.12.0</td>
+<td style="text-align:center">2.7, 3.3-3.6</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center">9</td>
+</tr>
+<tr>
+<td style="text-align:center">tensorflow_gpu-1.11.0</td>
+<td style="text-align:center">2.7, 3.3-3.6</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center">9</td>
+</tr>
+<tr>
+<td style="text-align:center">tensorflow_gpu-1.10.0</td>
+<td style="text-align:center">2.7, 3.3-3.6</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center">9</td>
+</tr>
+<tr>
+<td style="text-align:center">tensorflow_gpu-1.9.0</td>
+<td style="text-align:center">2.7, 3.3-3.6</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center">9</td>
+</tr>
+<tr>
+<td style="text-align:center">tensorflow_gpu-1.8.0</td>
+<td style="text-align:center">2.7, 3.3-3.6</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center">9</td>
+</tr>
+<tr>
+<td style="text-align:center">tensorflow_gpu-1.7.0</td>
+<td style="text-align:center">2.7, 3.3-3.6</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center">9</td>
+</tr>
+<tr>
+<td style="text-align:center">tensorflow_gpu-1.6.0</td>
+<td style="text-align:center">2.7, 3.3-3.6</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center">9</td>
+</tr>
+<tr>
+<td style="text-align:center">tensorflow_gpu-1.5.0</td>
+<td style="text-align:center">2.7, 3.3-3.6</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center">9</td>
+</tr>
+<tr>
+<td style="text-align:center">tensorflow_gpu-1.4.0</td>
+<td style="text-align:center">2.7, 3.3-3.6</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">8</td>
+</tr>
+<tr>
+<td style="text-align:center">tensorflow_gpu-1.3.0</td>
+<td style="text-align:center">2.7, 3.3-3.6</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">8</td>
+</tr>
+<tr>
+<td style="text-align:center">tensorflow_gpu-1.2.0</td>
+<td style="text-align:center">2.7, 3.3-3.6</td>
+<td style="text-align:center">5.1</td>
+<td style="text-align:center">8</td>
+</tr>
+<tr>
+<td style="text-align:center">tensorflow_gpu-1.1.0</td>
+<td style="text-align:center">2.7, 3.3-3.6</td>
+<td style="text-align:center">5.1</td>
+<td style="text-align:center">8</td>
+</tr>
+<tr>
+<td style="text-align:center">tensorflow_gpu-1.0.0</td>
+<td style="text-align:center">2.7, 3.3-3.6</td>
+<td style="text-align:center">5.1</td>
+<td style="text-align:center">8</td>
+</tr>
+</tbody>
+</table>
+<p>预计tensorflow_gpu-1.13.0支持CUDA 10.1 与 cuDNN 7.5 for 10.1, 但是由于之后的一些问题，心累,决定按照<a href="https://blog.csdn.net/weixin_39290638/article/details/80045236" title="gpu" target="_blank" rel="noopener">前人经验</a>进行CUDA 9.0+ tensorflow-gpu 1.12+ cuDNN 7.5.0 环境的安装。</p>
+<p>进入CUDA<a href="https://developer.nvidia.com/cuda-toolkit-archive" title="CUDA" target="_blank" rel="noopener">下载链接</a>后，选择CUDA 9.0,进入以下界面:</p>
+<div align="center"><br><br><img src="https://github.com/wuzb19951013/images/raw/master/tensorflow-gpu/CUDAlink.png" alt><br><br></div><br>选择windows等选项后，界面下方的所有下载项都需要下载（后四个是补丁，如果是10.1就没这么多补丁了）。下载完成后，安装顺序也按照上图所示排列顺序来。<br>安装本体cuda_9.0.176_win10_network.exe时，跟着索引走，如遇到以下图片时，请务必选择自定义安装。<br><br><div align="center"><br><br><img src="https://github.com/wuzb19951013/images/raw/master/tensorflow-gpu/installicon.png" alt><br><br></div>
+
+<p>进入自定义安装之后，请务必按上图中的去掉勾选项，尤其是最后一项，他会更新你的驱动程序，是的，更新完之后，很可能你的独立显卡就无法使用了，重装驱动才能解决问题，这也是为什么即使它能更新驱动也要你安装驱动支持的CUDA版本的原因。安装完主体后，剩下的补丁只要顺序安装即可。</p>
+<div align="center"><br><br><img src="https://github.com/wuzb19951013/images/raw/master/tensorflow-gpu/install.png" alt><br><br></div>
+
+<h2 id="安装cuDNN"><a href="#安装cuDNN" class="headerlink" title="安装cuDNN"></a>安装cuDNN</h2><p>NVIDIA <a href="https://developer.nvidia.com/cuda-toolkit-archive" title="CUDA" target="_blank" rel="noopener">cuDNN</a>是用于深度神经网络的GPU加速库。它强调性能、易用性和低内存开销。下载CuDNN需要注册账号，注册过程比较简单，经过注册可以进入以下界面。</p>
+<div align="center"><br><br><img src="https://github.com/wuzb19951013/images/raw/master/tensorflow-gpu/cuDNN.png" alt><br><br></div>
+
+<p>因为cuDNN新的版本支持多个老版本的CUDA,选择最新版本对应CUDA版本对应平台的下载链接下载即可。下载得到一个zip文件。解压压缩包cudnn-9.0-windows10-x64-v7.5.zip，得到三个文件夹。</p>
+<div align="center"><br><br><img src="https://github.com/wuzb19951013/images/raw/master/tensorflow-gpu/cuDNNdir.png" alt><br><br></div>
+
+<p>将这三个文件拷贝到CUDA9.0的安装路径根文件夹下，就完成了前期工作。</p>
+<div align="center"><br><br><img src="https://github.com/wuzb19951013/images/raw/master/tensorflow-gpu/CUDAdir.png" alt><br><br></div>
+
+<h2 id="安装-tensorflow-1-12-gpu版"><a href="#安装-tensorflow-1-12-gpu版" class="headerlink" title="安装 tensorflow 1.12 gpu版"></a>安装 tensorflow 1.12 gpu版</h2><p>根据 <a href="http://wuzb19951013.github.io/2019/03/04/tensorflow/" target="_blank" rel="noopener">Win10安装tensorflow 1.13版本与tensorflow-gpu 1.12 +cuda 9.0+cudann 7.4.2的辛酸史（一）</a>的方法安装Anaconda并创建新环境。</p>
+<pre><code>conda create -n tensorflow-gpu python=3.6
+</code></pre><p>由于tensorflow-gpu 1.12只支持到python 3.6 所以需要制定python 3.6.同时，默认安装tensorflow-gpu 1.13，虽然tensorflow-gpu 1.13也支持python 3.6 但为了防止万一，安装tensorflow-gpu 1.12更稳妥。安装之前，因为环境是python 3.6，首先，先升级pip</p>
+<pre><code>python -m pip install --upgrade pip
+</code></pre><p>升级完成后，安装tensorflow-gpu</p>
+<pre><code>pip install --ignore-installed --upgrade tensorflow-gpu==1.12
+</code></pre><p>利用（一）中的方法进入新环境后，输入测试代码</p>
+<pre><code>import tensorflow as tf
+hello = tf.constant(&apos;Hello, TensorFlow!&apos;)
+sess = tf.Session()
+print(sess.run(hello))
+</code></pre><p>耐心等待，正确输出即表示成功。</p>
+<div align="center"><br><br><img src="https://github.com/wuzb19951013/images/raw/master/tensorflow-gpu/result.png" alt><br><br></div>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/tensorflow/" rel="tag"># tensorflow</a>
+          
+            <a href="/tags/cuda/" rel="tag"># cuda</a>
+          
+            <a href="/tags/gpu/" rel="tag"># gpu</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2023/07/17/my grandfather/" rel="next" title="我的外公">
+                <i class="fa fa-chevron-left"></i> 我的外公
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2023/07/17/tensorflow/" rel="prev" title="Win10安装tensorflow 1.13版本与tensorflow-gpu 1.12 +cuda 9.0+cudann 7.4.2的辛酸史（一）">
+                Win10安装tensorflow 1.13版本与tensorflow-gpu 1.12 +cuda 9.0+cudann 7.4.2的辛酸史（一） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Wuzb">
+            
+              <p class="site-author-name" itemprop="name">Wuzb</p>
+              <p class="site-description motion-element" itemprop="description">Don't follow your passion, but always bring it with you.</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">分类</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/wuzb19951013" title="GitHub &rarr; https://github.com/wuzb19951013" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://www.zhihu.com/people/wu-ze-bin-78/activities" title="Zhihu &rarr; https://www.zhihu.com/people/wu-ze-bin-78/activities" rel="noopener" target="_blank"><i class="fa fa-fw fa-address-book-o"></i>Zhihu</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://www.instagram.com/wuzb19951013" title="Instagram &rarr; https://www.instagram.com/wuzb19951013" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装tensorflow-gpu-1-12-版"><span class="nav-number">1.</span> <span class="nav-text">安装tensorflow-gpu 1.12 版</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装CUDA"><span class="nav-number">1.1.</span> <span class="nav-text">安装CUDA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装cuDNN"><span class="nav-number">1.2.</span> <span class="nav-text">安装cuDNN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-tensorflow-1-12-gpu版"><span class="nav-number">1.3.</span> <span class="nav-text">安装 tensorflow 1.12 gpu版</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wuzb</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v6.5.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.5.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
